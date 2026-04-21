@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Calendar, MessageCircle, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 
 export default function CTAFinal() {
   const ref = useRef(null);
@@ -39,18 +39,14 @@ export default function CTAFinal() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a href="#formulario"
-            className="group inline-flex items-center gap-2.5 px-9 py-4 bg-[#CC0000] hover:bg-[#FF0000] text-white font-montserrat font-bold text-base rounded transition-all duration-150 shadow-lg shadow-red-900/30">
+          <a
+            href="#formulario"
+            className="group inline-flex items-center gap-2.5 px-10 py-4 bg-[#CC0000] hover:bg-[#FF0000] text-white font-montserrat font-bold text-base rounded transition-all duration-150 shadow-lg shadow-red-900/30"
+          >
             <Calendar size={17} />
             Agendar apresentação
             <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a href="#formulario"
-            className="inline-flex items-center gap-2.5 px-9 py-4 border border-white/15 hover:border-white/35 text-white font-montserrat font-semibold text-base rounded transition-all duration-150">
-            <MessageCircle size={17} />
-            Falar com especialista
           </a>
         </motion.div>
       </div>
