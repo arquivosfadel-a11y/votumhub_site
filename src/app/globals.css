@@ -42,14 +42,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+}
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #FF0000; border-radius: 3px; }
+
+/* ── Hero banner animations ── */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-::-webkit-scrollbar-track {
-  background: #000000;
-}
+.animate-fade-slide-in-1 { animation: fadeSlideIn 0.7s ease forwards; opacity: 0; }
+.animate-fade-slide-in-2 { animation: fadeSlideIn 0.7s ease 0.15s forwards; opacity: 0; }
+.animate-fade-slide-in-3 { animation: fadeSlideIn 0.7s ease 0.3s forwards; opacity: 0; }
+.animate-fade-slide-in-4 { animation: fadeSlideIn 0.7s ease 0.45s forwards; opacity: 0; }
 
-::-webkit-scrollbar-thumb {
-  background: #FF0000;
-  border-radius: 3px;
+/* ── Section wave dividers ── */
+.wave-top {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-top svg,
+.wave-bottom svg {
+  display: block;
+  width: 100%;
 }

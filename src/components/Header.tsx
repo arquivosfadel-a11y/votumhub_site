@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "O Problema", href: "#problema" },
@@ -17,7 +18,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -27,62 +28,74 @@ export default function Header() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/95 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-black/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/50"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <span className="font-montserrat font-900 text-xl tracking-tight text-white">
-            Votum<span className="text-[#FF0000]">Hub</span>
-          </span>
+        {/* Logo */}
+        <a href="#" className="flex items-center">
+          <Image
+            src="/logovermelho.png"
+            alt="VotumHub"
+            width={140}
+            height={44}
+            className="object-contain h-9 w-auto"
+            priority
+          />
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#AAAAAA] hover:text-white transition-colors duration-200 font-inter"
+              className="text-sm text-white/60 hover:text-white transition-colors duration-200 font-inter tracking-wide"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
+        {/* CTA + mobile toggle */}
         <div className="flex items-center gap-3">
           <a
             href="https://app.votumhub.com.br"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center px-5 py-2.5 bg-[#FF0000] hover:bg-[#CC0000] text-white text-sm font-semibold rounded transition-all duration-200 font-montserrat"
+            className="hidden md:inline-flex items-center px-5 py-2.5 bg-[#FF0000] hover:bg-[#CC0000] text-white text-sm font-bold rounded-full transition-all duration-200 font-montserrat shadow-lg shadow-red-900/30"
           >
             Acessar Painel
           </a>
           <button
-            className="md:hidden text-white"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full bg-white/8 ring-1 ring-white/15 text-white"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black border-t border-white/10"
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/8"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-5 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-[#AAAAAA] hover:text-white py-2 border-b border-white/5 text-sm"
+                  className="text-white/70 hover:text-white py-3 border-b border-white/5 text-sm font-inter"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -92,7 +105,7 @@ export default function Header() {
                 href="https://app.votumhub.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center justify-center px-5 py-3 bg-[#FF0000] text-white text-sm font-semibold rounded"
+                className="mt-4 inline-flex items-center justify-center px-5 py-3.5 bg-[#FF0000] text-white text-sm font-bold rounded-full font-montserrat"
               >
                 Acessar Painel
               </a>
