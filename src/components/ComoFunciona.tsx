@@ -1,116 +1,78 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Clock, UserCheck, Globe, LayoutDashboard, TrendingUp, Target } from "lucide-react";
+import { Zap, Target, Map, LayoutDashboard, TrendingUp, Award } from "lucide-react";
 
 const cards = [
-  {
-    icon: Clock,
-    titulo: "Atuação contínua",
-    desc: "O sistema opera 24h por dia mantendo presença constante na mente do eleitor.",
-  },
-  {
-    icon: UserCheck,
-    titulo: "Trabalho individual",
-    desc: "Atuação eleitor por eleitor, impossível de replicar manualmente.",
-  },
-  {
-    icon: Globe,
-    titulo: "Escala real",
-    desc: "Capacidade de atuação em toda a cidade, sem limitação geográfica.",
-  },
-  {
-    icon: LayoutDashboard,
-    titulo: "Operação centralizada",
-    desc: "Tudo organizado em um único ambiente, com total visibilidade.",
-  },
-  {
-    icon: TrendingUp,
-    titulo: "Eficiência de investimento",
-    desc: "Redução de custos operacionais com resultados proporcionais à escala.",
-  },
-  {
-    icon: Target,
-    titulo: "Foco no objetivo",
-    desc: "Não é sobre aparecer. É sobre conquistar voto.",
-  },
+  { icon: Zap,             titulo: "Atuação 24h",          desc: "Opera continuamente sem pausas ou limitações humanas." },
+  { icon: Target,          titulo: "Eleitor por eleitor",   desc: "Contato individual impossível de replicar manualmente." },
+  { icon: Map,             titulo: "Escala total",          desc: "100% da cidade coberta sem limitação geográfica." },
+  { icon: LayoutDashboard, titulo: "Operação centralizada", desc: "Tudo visível em um único ambiente de controle." },
+  { icon: TrendingUp,      titulo: "Eficiência",            desc: "Redução de custos com resultado proporcional à escala." },
+  { icon: Award,           titulo: "Foco no voto",          desc: "Não é sobre aparecer. É sobre conquistar voto." },
 ];
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.09 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
 
 export default function ComoFunciona() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section
-      id="como-funciona"
-      ref={ref}
-      className="relative py-28 bg-[#0A0A0A] overflow-hidden"
-    >
-      {/* Top divider */}
-      <div className="wave-top">
-        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ height: 56 }}>
-          <path d="M0,0 C480,56 960,56 1440,0 L1440,0 L0,0 Z" fill="#000000" />
-        </svg>
-      </div>
+    <section id="como-funciona" ref={ref} className="relative bg-[#111111] py-28 overflow-hidden">
+      <div className="section-line absolute top-0 inset-x-0" />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[#FF0000]/4 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[700px] h-[400px] bg-[#CC0000]/4 rounded-full blur-[160px]" />
+      </div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        {/* Header */}
+        <motion.span
+          initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5 }}
+          className="block text-[#CC0000] text-xs font-bold tracking-[0.25em] uppercase font-montserrat mb-5"
         >
-          <span className="inline-block text-[#FF0000] text-xs font-montserrat font-bold tracking-widest uppercase mb-4 px-3 py-1.5 bg-[#FF0000]/8 rounded-full border border-[#FF0000]/15">
-            Como funciona
-          </span>
-          <h2 className="font-montserrat font-black text-4xl md:text-5xl text-white leading-tight">
-            Uma estrutura que trabalha pelo seu voto{" "}
-            <span className="text-[#FF0000]">todos os dias.</span>
-          </h2>
-        </motion.div>
+          Como Funciona
+        </motion.span>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, delay: 0.1 }}
+          className="font-montserrat font-black text-4xl md:text-5xl text-white leading-tight mb-4 max-w-3xl"
+        >
+          Uma estrutura que trabalha
+          <br />
+          pelo seu voto <span className="text-[#CC0000]">todos os dias.</span>
+        </motion.h2>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {cards.map((card) => (
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.9, delay: 0.25, ease: "easeOut" }}
+          style={{ originX: 0 }}
+          className="h-px w-40 bg-gradient-to-r from-[#CC0000] to-transparent mb-14"
+        />
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {cards.map((c, i) => (
             <motion.div
-              key={card.titulo}
-              variants={cardVariants}
-              className="group relative bg-white/[0.03] border border-white/8 hover:border-[#FF0000]/30 rounded-xl p-7 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.05]"
+              key={c.titulo}
+              initial={{ opacity: 0, y: 28 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.08 * i + 0.2 }}
+              className="group bg-[#0A0A0A] border border-[#222222] hover:border-[#CC0000]/40 rounded-lg p-7 transition-all duration-250 hover:-translate-y-0.5"
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF0000]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-              <div className="w-11 h-11 bg-[#FF0000]/10 group-hover:bg-[#FF0000]/18 rounded-lg flex items-center justify-center mb-5 transition-colors duration-300">
-                <card.icon size={22} className="text-[#FF0000]" strokeWidth={1.5} />
+              <div className="w-10 h-10 bg-[#CC0000]/10 group-hover:bg-[#CC0000]/18 rounded flex items-center justify-center mb-5 transition-colors">
+                <c.icon size={20} className="text-[#CC0000]" strokeWidth={1.5} />
               </div>
-              <h3 className="font-montserrat font-bold text-white text-base mb-2">{card.titulo}</h3>
-              <p className="text-white/50 text-sm font-inter leading-relaxed">{card.desc}</p>
+              <h3 className="font-montserrat font-bold text-white text-sm mb-2">{c.titulo}</h3>
+              <p className="text-[#AAAAAA] text-xs leading-relaxed">{c.desc}</p>
             </motion.div>
           ))}
-        </motion.div>
-      </div>
-
-      {/* Bottom divider */}
-      <div className="wave-bottom">
-        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ height: 56 }}>
-          <path d="M0,56 C480,0 960,0 1440,56 L1440,56 L0,56 Z" fill="#000000" />
-        </svg>
+        </div>
       </div>
     </section>
   );

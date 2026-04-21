@@ -1,15 +1,15 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Problema from "@/components/Problema";
-import Solucao from "@/components/Solucao";
+import Header     from "@/components/Header";
+import Hero        from "@/components/Hero";
+import Problema    from "@/components/Problema";
+import Solucao     from "@/components/Solucao";
 import ComoFunciona from "@/components/ComoFunciona";
-import Liderancas from "@/components/Liderancas";
+import Integracao  from "@/components/Integracao";
 import Comparativo from "@/components/Comparativo";
-import ParaQuem from "@/components/ParaQuem";
-import ImpactoFinal from "@/components/ImpactoFinal";
-import CTAFinal from "@/components/CTAFinal";
-import Formulario from "@/components/Formulario";
-import Footer from "@/components/Footer";
+import ParaQuem    from "@/components/ParaQuem";
+import Impacto     from "@/components/Impacto";
+import CTAFinal    from "@/components/CTAFinal";
+import Formulario  from "@/components/Formulario";
+import Footer      from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -19,10 +19,10 @@ export default function Home() {
       <Problema />
       <Solucao />
       <ComoFunciona />
-      <Liderancas />
+      <Integracao />
       <Comparativo />
       <ParaQuem />
-      <ImpactoFinal />
+      <Impacto />
       <CTAFinal />
       <Formulario />
       <Footer />

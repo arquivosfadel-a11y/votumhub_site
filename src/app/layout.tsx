@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VotumHub — Isso não é marketing digital. É construção de voto.",
+  title: "VotumHub — Inteligência que vence eleições",
   description:
-    "O VotumHub é um ecossistema que trabalha 24 horas por dia conectando o candidato ao eleitor e estruturando a campanha para conquistar votos em escala.",
-  keywords: ["campanha eleitoral", "voto", "eleitor", "estrutura de campanha", "votumhub"],
+    "O VotumHub atinge 100% de uma cidade de forma controlada, criando contato diário com o eleitor — sem redes sociais, sem marketing digital.",
+  keywords: ["campanha eleitoral", "voto", "eleitor", "estrutura de campanha", "votumhub", "eleições 2026"],
   openGraph: {
-    title: "VotumHub — Construção de voto em escala",
-    description: "Ecossistema que trabalha 24h por dia para conquistar votos com estrutura e escala.",
+    title: "VotumHub — Inteligência que vence eleições",
+    description: "Sua campanha está em toda a cidade. Ou está perdendo votos.",
     url: "https://www.votumhub.com.br",
     siteName: "VotumHub",
     locale: "pt_BR",
